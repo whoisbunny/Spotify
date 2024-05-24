@@ -1,35 +1,58 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router";
+import React from "react";
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
+import { Colors } from "@/constants/Colors";
+import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-      }}>
+
+        tabBarStyle: {
+          backgroundColor: "rgba(0,0,0,0.5)",
+          position: "absolute",
+          bottom: 0,
+          paddingTop: 10,
+          left: 0,
+          right: 0,
+          shadowOpacity: 4,
+          shadowRadius: 4,
+          elevation: 4,
+          shadowOffset: {
+            width: 0,
+            height: -4,
+          },
+          borderTopWidth: 0,
+        },
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+          title: "",
+          tabBarLabelStyle: { color: "white" },
+
+          tabBarIcon: ({ focused }) =>
+            focused ? (
+              <Entypo name="home" size={24} color={"white"} />
+            ) : (
+              <AntDesign name="home" size={24} color={"white"} />
+            ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="person"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
+          tabBarLabelStyle: { color: "white" },
+          title: "",
+
+          tabBarIcon: ({ focused }) =>
+            focused ? (
+              <Ionicons name="person" size={24} color={"white"} />
+            ) : (
+              <Ionicons name="person-outline" size={24} color={"white"} />
+            ),
         }}
       />
     </Tabs>
